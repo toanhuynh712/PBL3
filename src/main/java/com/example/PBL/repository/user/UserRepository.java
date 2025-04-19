@@ -1,16 +1,14 @@
-package com.example.PBL.repository;
+package com.example.PBL.repository.user;
 
 import com.example.PBL.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.repository.query.Param;
+
 import java.util.List;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-
-    // Tìm người dùng theo số điện thoại
-    User findByPhoneNumber(String phoneNumber);
-
-    // Tìm người dùng theo username
-    User findByUsername(String username);  // Tìm người dùng theo tên đăng nhập (username)
 
     // Tìm người dùng theo tên
     List<User> findByNameContaining(String name);  // Tìm người dùng theo tên (có thể tìm kiếm theo phần tên)
@@ -21,11 +19,8 @@ public interface UserRepository extends JpaRepository<User, Long> {
     // Tìm tất cả người dùng (để quản lý người dùng trong trường hợp Admin)
     List<User> findAll();
 
-    // Tìm tất cả người dùng có thể tìm kiếm theo tên hoặc số điện thoại
-    List<User> findByNameContainingOrPhoneNumberContaining(String name, String phoneNumber);
-
-    // Tìm người dùng theo giới tính
-    List<User> findByGender(String gender);
+     // Tìm người dùng theo tên (phần tên) hoặc userID (phần ID)
+     Page<User> findByNameContainingIgnoreCaseOrUserIDContaining(String name, String userID, Pageable pageable);
 
     // Xóa người dùng (được thực hiện bởi Admin)
     void deleteById(Long id);

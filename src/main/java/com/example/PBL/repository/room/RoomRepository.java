@@ -1,7 +1,9 @@
-package com.example.PBL.repository;
+package com.example.PBL.repository.room;
+
+import org.springframework.data.jpa.repository.JpaRepository;
 
 import com.example.PBL.model.Room;
-import org.springframework.data.jpa.repository.JpaRepository;
+
 import java.util.List;
 
 public interface RoomRepository extends JpaRepository<Room, Long> {
