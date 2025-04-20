@@ -20,9 +20,9 @@ public interface RoomRepository extends JpaRepository<Room, Long> {
     // Tìm phòng theo diện tích
     List<Room> findByAreaBetween(double minArea, double maxArea);  // Tìm phòng theo diện tích từ minArea đến maxArea
 
-    // Tìm phòng theo nhiều điều kiện: loại phòng, khu vực, giá và diện tích
-    List<Room> findByTypeAndLocationAndPriceBetweenAndAreaBetween(
-        Room.RoomType type, String location, double minPrice, double maxPrice, double minArea, double maxArea);
+     // Tìm kiếm phòng theo location, giá, diện tích và loại phòng
+     List<Room> findByLocationAndPriceBetweenAndAreaBetweenAndType(
+        String locationId, Double minPrice, Double maxPrice, Integer minArea, Integer maxArea, String roomType);
     
     // Tìm tất cả các phòng trọ theo một loại phòng nhất định
     // Tìm phòng trọ theo tên chủ trọ (có thể tham chiếu tới tên hoặc ID của chủ trọ)

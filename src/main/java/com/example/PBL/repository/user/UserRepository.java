@@ -8,22 +8,22 @@ import org.springframework.data.repository.query.Param;
 
 import java.util.List;
 
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface UserRepository extends JpaRepository<User, String> {
 
     // Tìm người dùng theo tên
     List<User> findByNameContaining(String name);  // Tìm người dùng theo tên (có thể tìm kiếm theo phần tên)
 
     // Tìm người dùng theo ID (có thể dùng để quản lý tài khoản)
-    User findByIdUser(Long id);
+    User findByIdUser(String id); // ID là String
 
     // Tìm tất cả người dùng (để quản lý người dùng trong trường hợp Admin)
     List<User> findAll();
 
-     // Tìm người dùng theo tên (phần tên) hoặc userID (phần ID)
-     Page<User> findByNameContainingIgnoreCaseOrUserIDContaining(String name, String userID, Pageable pageable);
+    // Tìm người dùng theo tên (phần tên) hoặc userID (phần ID)
+    Page<User> findByNameContainingIgnoreCaseOrUserIDContaining(String name, String userID, Pageable pageable);
 
     // Xóa người dùng (được thực hiện bởi Admin)
-    void deleteById(Long id);
+    void deleteById(String id);  // ID là String
 
     // Tìm tất cả người dùng có trạng thái "active"
     List<User> findByIsActive(Boolean isActive);  // Trạng thái active hay không (có thể áp dụng cho việc khóa/mở khóa tài khoản)
@@ -33,5 +33,4 @@ public interface UserRepository extends JpaRepository<User, Long> {
 
     // Tìm người dùng theo ngày sinh
     List<User> findByDateOfBirthBetween(String startDate, String endDate);  // Tìm theo khoảng thời gian ngày sinh
-
 }

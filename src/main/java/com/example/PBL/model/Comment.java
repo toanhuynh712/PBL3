@@ -1,16 +1,11 @@
 package com.example.PBL.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 import java.util.UUID;
 
 @Entity
 @Table(name = "comment")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Comment {
 
     @Id
@@ -32,7 +27,40 @@ public class Comment {
     @PrePersist
     public void prePersist() {
         if (this.id == null) {
-            this.id = UUID.randomUUID().toString(); // Tạo UUID khi chưa có ID
+            this.id = UUID.randomUUID().toString();
         }
+    }
+
+    // Getters and setters
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getContent() {
+        return content;
+    }
+
+    public void setContent(String content) {
+        this.content = content;
+    }
+
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 }

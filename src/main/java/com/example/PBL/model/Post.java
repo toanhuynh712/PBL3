@@ -24,10 +24,6 @@ import lombok.NoArgsConstructor;
 
 @Entity
 @Table(name = "post") // Tên bảng trong CSDL
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class Post {
 
     @Id
@@ -75,5 +71,95 @@ public class Post {
         PENDING,
         APPROVED,
         REJECTED
+    }
+
+    // Getter and Setter for postID
+    public String getPostID() {
+        return postID;
+    }
+
+    public void setPostID(String postID) {
+        this.postID = postID;
+    }
+
+    // Getter and Setter for title
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    // Getter and Setter for description
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    // Getter and Setter for room
+    public Room getRoom() {
+        return room;
+    }
+
+    public void setRoom(Room room) {
+        this.room = room;
+    }
+
+    // Getter and Setter for status
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
+
+    // Getter and Setter for rejectionReason
+    public String getRejectionReason() {
+        return rejectionReason;
+    }
+
+    public void setRejectionReason(String rejectionReason) {
+        this.rejectionReason = rejectionReason;
+    }
+
+    // Getter and Setter for createdAt
+    public Date getCreatedAt() {
+        return createdAt;
+    }
+
+    public void setCreatedAt(Date createdAt) {
+        this.createdAt = createdAt;
+    }
+
+    // Getter and Setter for imageUrls
+    public List<Image> getImageUrls() {
+        return imageUrls;
+    }
+
+    public void setImageUrls(List<Image> imageUrls) {
+        this.imageUrls = imageUrls;
+    }
+
+    // Getter and Setter for comments
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
+    // Getter and Setter for owner
+    public User getOwner() {
+        return owner;
+    }
+
+    public void setOwner(User owner) {
+        this.owner = owner;
     }
 }

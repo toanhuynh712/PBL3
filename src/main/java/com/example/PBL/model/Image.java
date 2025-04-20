@@ -1,13 +1,9 @@
 package com.example.PBL.model;
 
 import jakarta.persistence.*;
-import lombok.*;
 
 @Entity
 @Table(name = "Post_Images")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
 public class Image {
 
     @Id
@@ -21,4 +17,31 @@ public class Image {
     @ManyToOne
     @JoinColumn(name = "post_id")
     private Post post;
+
+    // Getter and Setter for id
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    // Getter and Setter for url
+    public String getUrl() {
+        return url;
+    }
+
+    public void setUrl(String url) {
+        this.url = url;
+    }
+
+    // Getter and Setter for post
+    public Post getPost() {
+        return post;
+    }
+
+    public void setPost(Post post) {
+        this.post = post;
+    }
 }

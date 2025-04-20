@@ -1,34 +1,58 @@
 package com.example.PBL.service;
 
+import com.example.PBL.model.User;
+import com.example.PBL.repository.user.UserRepository;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
+import org.springframework.stereotype.Service;
+
 import java.util.List;
 import java.util.Optional;
 
-import com.example.PBL.model.*;
+@Service
+public class UserService {
 
-public interface UserService {
+    @Autowired
+    private UserRepository userRepository;
 
-     // Đăng bài
-     Post createPost(String userId, Post post);
+    // Tìm người dùng theo tên (có thể tìm kiếm theo phần tên)
+    public List<User> findByNameContaining(String name) {
+        return userRepository.findByNameContaining(name);
+    }
 
-     // Sửa bài đăng
-     Post updatePost(String userId, String postId, Post updatedPost);
- 
-     // Xóa bài đăng
-     boolean deletePost(String userId, String postId);
- 
-     // Thêm bình luận vào bài đăng
-     Comment addComment(String userId, String postId, String content);
- 
-     // Lấy thông tin người dùng
-     Optional<User> getUserInfo(String userId);
- 
-     // Cập nhật thông tin người dùng
-     User updateUserInfo(String userId, User userDetails);
- 
-     // Tìm kiếm bài đăng/phòng theo nhiều tiêu chí
-     List<Post> searchPosts(String location, Double minPrice, Double maxPrice,
-                            Double minArea, Double maxArea, String roomType);
- 
-     // Lấy danh sách bài đăng cá nhân của user
-     List<Post> getUserPosts(String userId);
+    // Tìm người dùng theo ID
+    public Optional<User> findByIdUser(String id) {
+        return Optional.ofNullable(userRepository.findByIdUser(id));
+    }
+
+    // Tìm tất cả người dùng
+    public List<User> findAll() {
+        return userRepository.findAll();
+    }
+
+    // Tìm người dùng theo tên hoặc userID
+    public Page<User> findByNameContainingIgnoreCaseOrUserIDContaining(String name, String userID, Pageable pageable) {
+        return userRepository.findByNameContainingIgnoreCaseOrUserIDContaining(name, userID, pageable);
+    }
+
+    // Xóa người dùng theo ID
+    public void deleteById(String id) {
+        userRepository.deleteById(id);
+    }
+
+    // Tìm tất cả người dùng có trạng thái "active"
+    public List<User> findByIsActive(Boolean isActive) {
+        return userRepository.findByIsActive(isActive);
+    }
+
+    // Cập nhật thông tin người dùng
+    public User save(User user) {
+        return userRepository.save(user);
+    }
+
+    // Tìm người dùng theo ngày sinh
+    public List<User> findByDateOfBirthBetween(String startDate, String endDate) {
+        return userRepository.findByDateOfBirthBetween(startDate, endDate);
+    }
 }

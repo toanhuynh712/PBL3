@@ -6,6 +6,9 @@ import org.springframework.data.repository.query.Param;
 
 import com.example.PBL.model.Post;
 import com.example.PBL.model.Room;
+import com.example.PBL.model.Room.RoomType;
+import com.example.PBL.model.Location;
+
 
 import java.util.List;
 
@@ -37,5 +40,15 @@ List<Post> searchRooms(@Param("location") String location,
         List<Post> findByStatusAndOwner_UserID(Post.Status status, String userID);  // Tìm bài đăng của một user với trạng thái
 
         // Tìm bài đăng theo tiêu đề (tìm kiếm bài đăng theo tiêu đề)
-        List<Post> findByTitleContaining(String title);  // Tìm bài đăng theo tiêu đề chứa từ khóa      
-    }
+        List<Post> findByTitleContaining(String title);  // Tìm bài đăng theo tiêu đề chứa từ khóa
+        // Tìm kiếm bài đăng theo giá, diện tích, loại phòng và location      
+        List<Post> findByRoom_PriceBetweenAndRoom_AreaBetweenAndRoom_TypeAndRoom_Location_LocationId(
+            Double minPrice, 
+            Double maxPrice, 
+            Double minArea, 
+            Double maxArea, 
+            Room.RoomType roomType, 
+            String locationId);
+}
+    
+    

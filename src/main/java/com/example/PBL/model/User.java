@@ -4,14 +4,9 @@ import jakarta.persistence.*;
 import lombok.*;
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 @Entity
 @Table(name = "users")
-@Data
-@NoArgsConstructor
-@AllArgsConstructor
-@Builder
 public class User {
 
     @Id
@@ -49,7 +44,72 @@ public class User {
     }
 
     public boolean isAdmin() {
-        return account != null && account.getRole() == Account.Role.ADMIN;  // Kiểm tra xem người dùng có phải là admin không
+        return account != null && account.getRole() != null && account.getRole() == Account.Role.ADMIN;
     }
 
+    // Getter and Setter methods
+
+    public String getUserID() {
+        return userID;
+    }
+
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public LocalDate getBirthDate() {
+        return birthDate;
+    }
+
+    public void setBirthDate(LocalDate birthDate) {
+        this.birthDate = birthDate;
+    }
+
+    public Gender getGender() {
+        return gender;
+    }
+
+    public void setGender(Gender gender) {
+        this.gender = gender;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(String phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
+    public Account getAccount() {
+        return account;
+    }
+
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    public List<Post> getMyPosts() {
+        return myPosts;
+    }
+
+    public void setMyPosts(List<Post> myPosts) {
+        this.myPosts = myPosts;
+    }
+
+    public List<Comment> getMyComments() {
+        return myComments;
+    }
+
+    public void setMyComments(List<Comment> myComments) {
+        this.myComments = myComments;
+    }
 }
